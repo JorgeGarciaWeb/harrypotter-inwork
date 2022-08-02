@@ -12,13 +12,20 @@ router.get('/movie-characters/list', (req, res) => {
   })
 
 //CREATE CHARACTERS
-router.get('/create', (req, res, next) =>{
+router.get('/movie-characters/create', (req, res) => {
+    res.render('characters/create-form')
+})
+
+router.post('/movie-characters/create', (req, res) =>{
+    
+    const {name, actor, house} = req.body
+
+    const characterData = { name, actor, house }
 
     characersService
-    .find()
-    .then((characters) =>res.render('characters/create', {characters}))
-    .catch(error => next(new Error(error)))
-
+    .saveCharacter(characterData)
+    .then(response => res.redirect('/movie-characters/list'))
+    .catch(err => console.log(err))
 })
 
 module.exports = router
