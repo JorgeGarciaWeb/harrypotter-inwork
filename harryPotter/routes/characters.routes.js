@@ -3,7 +3,7 @@ const router = require("express").Router()
 const characersService = require('./../services/characters.service')
 
 //ALL CHARACTERS
-router.get('/movie-characters/list', (req, res) => {
+router.get('/movie-characters/list', (req, res, next) => {
 
     characersService
       .getAllCharacters()
@@ -12,7 +12,7 @@ router.get('/movie-characters/list', (req, res) => {
   })
 
 //MORE CHARACTERS DETAILS
-router.get('/movie-characters/:id', (req, res) => {
+router.get('/movie-characters/:id', (req, res, next) => {
    
   
     characersService
